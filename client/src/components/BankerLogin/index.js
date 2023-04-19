@@ -1,24 +1,7 @@
-import { useEffect, userHistory } from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 const BankerLogin = () => {
-  const [user, setData] = useState("");
-  const [password, setPassData] = useState("");
-  useEffect(() => {
-    const getData = async () => {
-      const userDetails = { user_id: user, password };
-      const url = "http://localhost:8000/login";
-      const options = {
-        method: "POST",
-        body: JSON.stringify(userDetails),
-      };
-      const res = await fetch(url, options);
-      const data = await res.json();
-      console.log(data);
-    };
-    getData();
-  }, []);
-
   return (
     <div>
       <Navbar />
@@ -50,10 +33,11 @@ const BankerLogin = () => {
               className="input-bar"
             />
           </div>
-
-          <button type="submit" className="login-btn">
-            Log in
-          </button>
+          <Link to="/account">
+            <button type="submit" className="login-btn">
+              Log in
+            </button>
+          </Link>
         </form>
       </div>
     </div>

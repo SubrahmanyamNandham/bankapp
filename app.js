@@ -48,16 +48,13 @@ app.post("/login", async (req, res) => {
 
   try {
     const result = await db.get(bankerDetails);
-
+    console.log(result);
     if (result === undefined) {
       res.status(400);
-      res.send("Invalid User Credentials");
-    } else {
-      res.status(200);
-      res.send(result);
+      res.send("invalid user");
     }
   } catch (e) {
-    //  console.log(e);
+    // console.log(e);
     res.send(e);
   }
 });
@@ -81,10 +78,12 @@ app.post("/user/login/", async (req, res) => {
     *
   FROM
     user
+
+
     `;
 
   try {
-    const result = await db.all(getUser);
+    const result = await db.get(getUser);
     // console.log(result);
     if (result === undefined) {
       res.status(400);
@@ -98,4 +97,30 @@ app.post("/user/login/", async (req, res) => {
     // console.log(e);
     res.send(e);
   }
+});
+
+app.get("/account/:userId", async (request, response) => {
+  const { userId } = request.params;
+  const getCustomerQuery = `
+    SELECT
+      *
+    FROM
+      acounts
+      where
+      userID=${userId}
+    `;
+  const CustomerArray = await db.get(getCustomerQuery);
+  response.send(CustomerArray);
+});
+
+app.post("/add", async (request, response) => {
+  const details = request.body;
+  const { creditedAmount } = details;
+  const getBalanceQuery = `
+   insert into acounts(creditedAmount)
+     values
+     '${creditedAmount}';
+    `;
+  const CustomerArray = await db.get(getBalanceQuery);
+  response.send(CustomerArray);
 });

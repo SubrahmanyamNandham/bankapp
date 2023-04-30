@@ -1,4 +1,5 @@
 import "./index.css";
+import { Link } from "react-router-dom";
 
 const AccountList = (props) => {
   const { details } = props;
@@ -6,14 +7,15 @@ const AccountList = (props) => {
   return (
     <li>
       <div className="rowItem">
-        <p>userId:{userId}</p>
-        <p>name:{name}</p>
-        <p>creditedMoney:{creditedAmount}</p>
-        <p>debitedMoney:{debitedAmount}</p>
-        <p>totalBalance:{totalBalance}</p>
-        <button>View details</button>
-        <hr />
+        <p className="details">userId : {userId}</p>
+        <p>Name : {name}</p>
+        <p>CreditedMoney : {creditedAmount}</p>
+        <p>DebitedMoney : {debitedAmount}</p>
+        <p>TotalBalance : {totalBalance}</p>
       </div>
+      <Link to={`/account/${userId}`}>
+        <button>View details</button>
+      </Link>
     </li>
   );
 };

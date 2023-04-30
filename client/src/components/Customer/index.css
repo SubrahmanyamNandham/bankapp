@@ -1,0 +1,56 @@
+.buttonItems {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  align-items: center;
+}
+
+.deposit {
+  background-color: rgb(224, 211, 192);
+  margin: 10px;
+}
+
+.input {
+  height: 5vh;
+  width: 80vw;
+  align-items: center;
+  background-color: transparent;
+}
+
+.customerContainer {
+  background-color: aqua;
+  height: 100vh;
+  background-size: cover;
+  width: 100vw;
+}
+
+/* styles for medium screens */
+@media screen and (min-width: 600px) {
+  .buttonItems {
+    flex-direction: row;
+    padding: 3%;
+  }
+
+  .deposit {
+    margin: 20px;
+  }
+
+  .input {
+    width: 50vw;
+  }
+}
+
+/* styles for large screens */
+@media screen and (min-width: 900px) {
+  .buttonItems {
+    padding: 6%;
+  }
+
+  .deposit {
+    margin: 20px;
+  }
+
+  .input {
+    width: 30vw;
+  }
+}
